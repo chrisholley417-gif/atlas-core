@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: atlas-build7-research-api
+    runtime: python
+    plan: free
+    buildCommand: python -m compileall -q core core_lock.py atlas_service.py replay_gate.py
+    startCommand: python atlas_service.py
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: ATLAS_R5_URL
+        sync: false
+      - key: ATLAS_READ_TOKEN
+        sync: false
